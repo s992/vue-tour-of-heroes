@@ -1,8 +1,11 @@
+import Vue from "vue"
 import VueRouter from "vue-router"
 
 import Dashboard from "./components/Dashboard"
 import Heroes from "./components/Heroes"
 import HeroDetail from "./components/HeroDetail"
+
+Vue.use(VueRouter)
 
 /* eslint-disable no-new */
 export const router = new VueRouter({
