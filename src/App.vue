@@ -5,18 +5,15 @@
 		<router-link to="/dashboard">Dashboard</router-link>
 		<router-link to="/heroes">Heroes</router-link>
 	</nav>
-	<router-view :heroes="heroes"></router-view>
+	<router-view></router-view>
 </div>
 </template>
 
 <script>
-import { HEROES } from "./mock-heroes"
-
 export default {
 	data() {
 		return {
-			title: "Tour of Heroes",
-			heroes: HEROES
+			title: "Tour of Heroes"
 		}
 	}
 }

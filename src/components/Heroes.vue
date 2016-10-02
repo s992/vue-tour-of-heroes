@@ -20,10 +20,14 @@
 </template>
 
 <script>
+import { mapState } from "vuex"
+
 import { router } from "../router"
 
 export default {
-	props: [ "heroes" ],
+	computed: mapState({
+		heroes: state => state.heroes
+	}),
 	data() {
 		return {
 			selectedHero: null,
@@ -38,9 +42,7 @@ export default {
 			router.push(`detail/${this.selectedHero.id}`)
 		},
 		add(name) {
-			const id = this.heroes[ this.heroes.length - 1 ].id + 1
-
-			this.heroes.push({ name, id })
+			this.$store.commit("add", name)
 			this.heroName = null
 		},
 		remove(hero, event) {
@@ -50,7 +52,7 @@ export default {
 				this.selectedHero = null
 			}
 
-			this.heroes.splice(this.heroes.findIndex(h => h === hero), 1)
+			this.$store.commit("remove", hero)
 		}
 	}
 }

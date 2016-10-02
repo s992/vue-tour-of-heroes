@@ -12,15 +12,14 @@
 </template>
 
 <script>
+import { mapState } from "vuex"
+
 import { router } from "../router"
 
 export default {
-	props: [ "heroes" ],
-	data() {
-		return {
-			topHeroes: this.heroes.slice(1, 5)
-		}
-	},
+	computed: mapState({
+		topHeroes: state => state.heroes.slice(1, 5)
+	}),
 	methods: {
 		goToDetail(hero) {
 			router.push(`detail/${hero.id}`)

@@ -17,16 +17,16 @@
 import { router } from "../router"
 
 export default {
-	props: [ "heroes" ],
-	data() {
-		return {
-			hero: Object.assign({}, this.heroes.find(h => h.id === +this.$route.params.id))
+	computed: {
+		// doesn't look like i can use mapState here because we need this.$route
+		hero() {
+			// binding our hero to a new object because i don't want to commit state changes until the user hits save
+			return Object.assign({}, this.$store.state.heroes.find(h => h.id === +this.$route.params.id))
 		}
 	},
 	methods: {
 		save() {
-			const hero = this.heroes.find(h => h.id === this.hero.id)
-			hero.name = this.hero.name
+			this.$store.commit("update", { id: this.hero.id, name: this.hero.name })
 		},
 		goBack() {
 			router.go(-1)
